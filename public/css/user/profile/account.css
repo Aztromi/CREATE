@@ -1,0 +1,204 @@
+.select2-selection__choice{
+    background-color: blue;
+}
+
+.removeX {
+    color: red;
+    cursor: pointer;
+}
+
+.removeX:hover {
+    cursor: pointer;
+}
+
+/* .clientX:hover {
+    
+}
+
+.awardX:hover {
+    cursor: pointer;
+} */
+
+#loadingModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#otherCategoryModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.modal-content {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #0d6efd;
+}
+
+
+
+.select2 {
+    /* width: 'resolve'; */
+    width: 100% !important;
+    
+}
+
+.select2-container--default .select2-selection--single {
+    height: 48px;
+    padding: 13px 0px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 11px;
+    right: 1px;
+    width: 30px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+
+    /* background-color: #3E3E3E;
+    color: #FFFFFF; */
+    /* padding: 10px 10px; */
+    /* border: 0; */
+    /* border-radius: 8px; */
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+
+/* 
+
+.select2-container--default .select2-selection--single {
+    background-color: #3E3E3E;
+    border: 0;
+    border-radius: 8px;
+
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 11px;
+    right: 1px;
+    width: 30px;
+}
+
+ */
+
+
+
+
+
+/* Images */
+    .dropify-wrapper input {
+        z-index: 0;
+    }
+
+    #banner {
+        width: 100%;
+        height: 250px; /* Adjust the height of the banner */
+        /* background: url('banner-image.jpg') center/cover; */
+        /* background: url("{{ asset('img/banner-default.jpg') }}") center/cover; */
+        border-radius: 10px;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    #profile-image {
+        width: 200px; /* Adjust the size of the circular image */
+        height: 200px;
+        border-radius: 50%;
+        /* overflow: hidden; */
+        border: 5px solid #fff; /* Add a border around the circular image */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the circular image */
+        position: absolute;
+        bottom: -75px; /* Adjust the position of the circular image */
+        left: 20px; /* Adjust the left position for alignment */
+        z-index: 1;
+    }
+
+
+    #banner .dropify-wrapper .dropify-message {
+        top: 23%;
+    }
+
+    #banner .dropify-wrapper .dropify-message .file-icon p{
+        font-size: 16px;
+    }
+
+    #banner .dropify-wrapper .dropify-message .file-icon::before {
+        /* CLOUD ICON */
+        content: '';
+    }
+
+    #banner .dropify-errors-container {
+        z-index: 2;
+    }
+
+    #banner .dropify-preview .dropify-render {
+        overflow: hidden;
+    }
+
+    #banner .dropify-wrapper .dropify-preview .dropify-render img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #profile-image .dropify-wrapper .dropify-message {
+        top: 40%;
+    }
+
+    #profile-image .dropify-wrapper {
+        width: 190px !important;
+        height: 190px !important;
+        border-radius: 50%;
+
+    }
+    #profile-image .dropify-wrapper .dropify-message .file-icon::before {
+        /* CLOUD ICON */
+        display: none;
+    }
+
+    #profile-image .dropify-wrapper .dropify-message .file-icon p{
+        font-size: 16px;
+    }
+
+    #profile-image .dropify-wrapper .dropify-preview .dropify-render img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #profile-image .dropify-wrapper.has-preview .dropify-clear {
+        margin-right: 25%;
+    }
+
+    #profile-image .dropify-errors-container {
+        display: block;
+        position: absolute;
+        width: 200%;
+    }
+
+
+/* END Images */

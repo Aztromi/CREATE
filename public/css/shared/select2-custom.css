@@ -1,0 +1,38 @@
+.select2-selection__choice{
+    background-color: blue;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #0d6efd;
+}
+
+.select2 {
+    /* width: 'resolve'; */
+    width: 100% !important;
+    
+}
+
+.select2-container--default .select2-selection--single {
+    height: 48px;
+    padding: 13px 0px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 26px;
+    position: absolute;
+    top: 11px;
+    right: 1px;
+    width: 30px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+
+    /* background-color: #3E3E3E;
+    color: #FFFFFF; */
+    /* padding: 10px 10px; */
+    /* border: 0; */
+    /* border-radius: 8px; */
+    font-size: 1.2em;
+    font-weight: 400;
+}
+

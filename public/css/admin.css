@@ -1,0 +1,464 @@
+/**********
+    CUSTOM FRONT-END SCRIPT - ADMIN DASHBOARD
+    by RD Cruz, IT Officer I
+    Experience Design Division
+***********/
+
+:root {
+    --black: #000000;
+    --black25: #252525;
+    --white: #ffffff;
+    --lightgrey: #eaeaea;
+    --darkgrey: #939598;
+    --blue: #217CCD;
+    --red: #FE4102;
+    --pink: #FCA2E0;
+    --yellow: #FFC901;
+    --green: #03C186;
+    --error: #D20606;
+}
+
+/***************** FONTS *****************/
+@font-face {
+  font-family: KalekoBook;
+  src: url(/public/fonts/Kaleko105Book.otf);
+}
+@font-face {
+  font-family: KalekoBold;
+  src: url(/public/fonts/Kaleko105Bold.otf);
+}
+
+/***************** TAGS *****************/
+body {
+    /* font-family: 'KalekoBook', sans-serif; */
+    font-family: 'Work Sans', sans-serif;
+    font-weight:300;
+    font-size: 1em;
+    line-height: 30px;
+    overflow-x: hidden;
+    background-color: #f4f6f9
+}
+
+body:not(.layout-fixed) .main-sidebar {
+    color: var(--white);
+    padding-bottom: 10vh
+}
+
+section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+tr > td {
+    padding: 20px
+}
+
+/***************** CLASS *****************/
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+.mt-40 { margin-top: 40px; }
+.mt-50 { margin-top: 50px; }
+.mt-60 { margin-top: 60px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-50 { margin-bottom: 50px; }
+.mb-60 { margin-bottom: 60px; }
+
+.pt-20 { padding-top: 20px; }
+.pt-30 { padding-top: 30px; }
+.pt-40 { padding-top: 40px; }
+.pt-50 { padding-top: 50px; }
+.pt-60 { padding-top: 60px; }
+.pb-20 { padding-bottom: 20px; }
+.pb-30 { padding-bottom: 30px; }
+.pb-40 { padding-bottom: 40px; }
+.pb-50 { padding-bottom: 50px; }
+.pb-60 { padding-bottom: 60px; }
+
+.bg_yellow, .status_pending { background-color: var(--yellow) }
+.bg_green, .status_member { background-color: var(--green) }
+.bg_red { background-color: var(--red); color:var(--white) }
+.bg_blue, .status_verified { background-color: var(--blue); color:var(--white) }
+.bg_pink, .status_unverified { background-color: var(--pink); }
+.status_denied { background-color: var(--darkgrey); }
+.bg_white { background-color: var(--white); }
+
+.content-wrapper {
+    padding: 3%
+}
+
+.admin-sidebar > div.logo-holder {
+    padding: 10%
+}
+
+.top-link-holder {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.action-holder > a {
+    color: var(--black);
+    text-decoration: none;
+    margin: 15px
+}
+
+.form-group {
+    position:relative
+}
+
+.has-search .form-control {
+    padding: 1.5em 3em;
+    font-size: 1em;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2em;
+    height: 2em;
+    line-height: 1em;
+    text-align: center;
+    pointer-events: none;
+    color: var(--lightgrey);
+    top: 10px;
+    left: 10px
+}
+
+.dashboard-control {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.dashboard-control > a > div {
+    padding: 20px;
+    line-height: 10px;
+    font-size:1.5em;
+    color: var(--white);
+    font-weight: bold;
+    display: inline-block
+}
+
+.dashboard-control > a:nth-child(1) > div {
+    background-color: var(--green);
+}
+
+.dashboard-control > a:nth-child(2) > div {
+    background-color: var(--blue);
+}
+
+.dashboard-control > a:nth-child(3) > div {
+    background-color: var(--red);
+}
+
+/***************** ARTICLES *****************/
+
+.article-list tr > td:first-child {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    font-weight: bold
+}
+
+/***************** REGISTERED USERS *****************/
+
+.application-list tr > td:nth-child(1), .member-list tr > td:nth-child(1), .creatives-list tr > td:nth-child(1), .bss-list tr > td:nth-child(1) {
+    font-weight: bold;
+}
+
+td > p {
+    font-weight: lighter;
+}
+
+.application-list tr > td:nth-child(2) > div, .creatives-list tr > td:nth-child(2) > div {
+    font-weight: bold;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.creatives-list tr > td:nth-child(3) {
+    text-align: center;
+    font-weight: bold;
+    font-size:1.5em
+}
+
+.creatives-list tr > td:nth-child(3) .fa-check {
+    color: var(--blue)
+}
+
+.creatives-list tr > td:nth-child(3) .fa-xmark {
+    color: var(--red)
+}
+
+.horizontal-list {
+    padding-left: 0
+}
+
+.horizontal-list > li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 50px;
+    font-size: 1.3em
+}
+
+a.btn.bg_blue:hover {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue)
+}
+
+a.btn.bg_red:hover {
+    background-color: var(--white);
+    color: var(--red);
+    border: 1px solid var(--red)
+}
+
+a.btn.bg_yellow:hover {
+    background-color: var(--black);
+    color: var(--yellow);
+    border: 1px solid var(--yellow)
+}
+
+
+/***************** PARTNERS *****************/
+.bss-list tr > td:nth-child(2) > div {
+    font-weight: bold;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+/***************** USERS *****************/
+ul.permission-list {
+    list-style: none;
+    margin-bottom:30px;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 20px
+}
+
+ul.permission-list > li {
+    height: fit-content;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+ul.permission-list > li > .header {
+    margin-bottom: unset !important;
+    margin-left: 10px;
+    line-height: 2;
+}
+
+
+/***************** DASHBOARD *****************/
+.dashboard-rundown > div:nth-child(1) {
+    background-color: var(--white);
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5em;
+    line-height: 1.1em;;
+    padding: 40px 40px 10px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.dashboard-rundown > div:nth-child(2) {
+    background-color: var(--lightgrey);
+    text-align: center;
+    font-size: 1em;
+    padding: 10px 30px 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top: 1px solid var(--black)
+}
+
+/***************** ANNOUNCEMENTS *****************/
+
+.announcement-item {
+    border: 2px solid var(--black25);
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.announcement-item > div {
+    padding: 30px
+}
+
+.announcement-item .header {
+    overflow-wrap: break-word;
+}
+
+.announcement-item .header p {
+    color: var(--yellow);
+    margin-bottom: 0;
+}
+
+.announcement-item .unread .header h2 {
+    color: var(--white)
+}
+
+.announcement-item .read .header h2, .announcement-item .read .header p {
+    color: var(--black);
+    font-weight: 300
+}
+
+.announcement-item .status svg {
+    height: 30px;
+    margin:10px;
+}
+
+.announcement-item .status > div:nth-child(2){
+    justify-content: right;
+    display: flex;
+}
+
+.status.unread {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.status.read {
+    background-color: var(--lightgrey);
+    color: var(--black);
+}
+
+
+.status.read svg.fa-envelope-open {
+    opacity: 0.5;
+}
+
+
+/***************** INBOX - MESSSAGE *****************/
+tr.new {
+    background-color: #77B9F4;
+    color:var(--white);
+    font-weight:bold;
+}
+
+tr.new a {
+    color:var(--white)
+}
+
+.message-holder  {
+    padding: 40px;
+    background-color: var(--white);
+}
+
+.sender-message {
+    border-top: 2px solid var(--black);
+    padding:20px;
+}
+
+.sender-message a {
+    cursor: pointer;
+}
+
+.sender-message > div:nth-child(2) {
+    padding: 30px;
+    border-bottom:1px solid var(--darkgrey);
+    margin-top:10px
+}
+
+.user-reply {
+    margin-left: 20px;
+    border-left: 2px solid var(--darkgrey);
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--lightgrey);
+}
+
+.user-reply > div:nth-child(2) {
+    padding: 30px;
+    margin-top:10px
+}
+
+
+/***************** BOOTSTRAP CLASS *****************/
+.bookmarked {
+    padding:30px 20px
+}
+
+.bookmarked-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.bookmarked-item {
+    display: inline-block;
+    margin: 30px;
+    width: 30%;
+    max-width: 300px;
+    padding-bottom: 30px;
+}
+
+.bookmarked-item > div:nth-child(1) {
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookmarked-item > div:nth-child(1) > img {
+    height: 100%;
+    transition: transform 0.5s ease-out;
+}
+
+.bookmarked-item:hover > div:nth-child(1) > img {
+    transition: transform 0.3s ease-out;
+    transform: scale(1.3)
+}
+
+.bookmarked-item > div:nth-child(2) {
+    white-space: initial;
+}
+
+.bookmarked-item > div:nth-child(2) > p:nth-child(1) {
+    margin-bottom: 0;
+    color: var(--yellow)
+}
+
+.bookmarked-item > div:nth-child(2) > h3 + p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.nobookmarked-item {
+    padding: 40px
+}
+
+.nobookmarked-item p {
+    font-size: 2em
+  }
+
+/***************** BOOTSTRAP CLASS *****************/
+.btn-primary {
+    background-color: var(--black);
+    color: var(--white)
+}
+
+:not(.btn-check) + .btn:hover, .btn:first-child:hover {
+    background-color: var(--blue);
+}

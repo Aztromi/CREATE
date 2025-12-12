@@ -1,0 +1,86 @@
+/**********
+    CUSTOM FRONT-END SCRIPT - USER DASHBOARD
+    by RD Cruz, IT Officer I
+    Experience Design Division
+***********/
+
+:root {
+    --black: #000000;
+    --black25: #252525;
+    --white: #f5f5f7;
+    --lightgrey: #eaeaea;
+    --darkgrey: #939598;
+    --blue: #217CCD;
+    --red: #FE4102;
+    --pink: #FCA2E0;
+    --yellow: #FFC901;
+    --green: #03C186;
+    --error: #D20606;
+}
+
+/***************** FONTS *****************/
+@font-face {
+  font-family: KalekoBook;
+  src: url(/public/fonts/Kaleko105Book.otf);
+}
+@font-face {
+  font-family: KalekoBold;
+  src: url(/public/fonts/Kaleko105Bold.otf);
+}
+
+/***************** TAGS *****************/
+body {
+    /* font-family: 'KalekoBook', sans-serif; */
+    font-family: 'Work Sans', sans-serif;
+    font-weight:300;
+    font-size: 1em;
+    line-height: 30px;
+    overflow-x: hidden;
+    background-color: var(--white)
+}
+body:not(.layout-fixed) .main-sidebar {
+    left:0
+}
+
+/***************** CLASS *****************/
+header div.logo-holder {
+    border-bottom:2px solid var(--darkgrey);
+    padding-bottom: 15px;
+}
+header div.logo-holder > img {
+    height:80px
+}
+.aside-button-holder {
+    text-align:right
+}
+
+/************************************************************************/
+/************************************************************************/
+/***************************** MEDIA QUERIES ****************************/
+/************************************************************************/
+/************************************************************************/
+
+/****************************** MAX-WIDTH: 420px *****************************/
+@media screen and (max-width: 767px)  { 
+    header {
+        display:initial
+    }
+    aside {
+        height:auto!important
+    }
+    /* body:not(.layout-fixed) .main-sidebar {
+        left:initial;
+        right:250px;
+    } */
+}
+@media screen and (min-width: 768px)  { 
+    header {
+        display:none
+    }
+    aside {
+        display: block!important;
+    }
+    div.aside-button-holder{
+        display:none
+    }
+}
