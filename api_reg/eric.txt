@@ -1,0 +1,16 @@
+CREATE VIRTUAL HOST
+
+xampp\apache\conf\extra\httpd-vhost.conf
+
+
+
+<VirtualHost *:80>
+	ServerAdmin email@gmail.com
+	DocumentRoot "c:/xampp/htdocs/v1"
+	ServerName api.citem.com
+	ErrorLog "logs/myapi.com-error.log"
+	CustomLog "logs/myapi.com-access.log" common
+</VirtualHost>
+
+
+ENC CREATE 8a82a413-2427-48d1-9b4f-9f8e45c3776f
