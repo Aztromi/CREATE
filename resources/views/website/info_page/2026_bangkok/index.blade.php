@@ -75,6 +75,15 @@
         color: #334E45;
     }
 
+    .p03 {
+        font-family: "Lato", sans-serif !important;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20px;
+        color: #F876F0;
+    }
+
     .banner {
         background-color: #334E45;
     }
@@ -122,14 +131,25 @@
         box-shadow: #334E45;
     }
 
-
     .button2 {
         background-color: #F8C3A0;
         text-decoration: none;
         color: black;
         padding: 20px 55px 20px 55px;
+        border: 2px solid transparent;
         box-shadow: #334E45;
     }
+
+    .button3 {
+        background-color: #B982BC;
+        color: #ECDBD3;
+        padding: 20px 55px 20px 55px;
+        border: 2px solid transparent;
+        box-shadow: #334E45;
+        top: 0;
+    }
+
+
 
     .button:hover {
         background-color: transparent;
@@ -142,14 +162,24 @@
     }
 
     .button1:hover {
-        background-color: #36393b;
-        color: whitesmoke;
+        border: 2px solid transparent;
+        background-color: #A2CBD4;
+        color: black;
 
     }
 
     .button2:hover {
-        background-color: #36393b;
+        background-color: transparent;
+        border: 2px solid black;
+        color: black;
 
+    }
+
+
+    .button3:hover {
+        background-color: transparent;
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
     }
 </style>
 @endsection
@@ -290,6 +320,15 @@
     </div>
     <div class="container text-center mt-4">
         <div class="row">
+            <div>
+                <img class="img-fluid rounded-3"
+                    src="{{ asset('img/static/2026_BMC/BMC-img-7.png') }}"
+                    alt="2026_BMC"
+                    loading="lazy">
+                <p class="p03 text-start mt-2">
+                    Source: @muri.music @tedorsenado.photo
+                </p>
+            </div>
             @php
             $content = [
             [
@@ -320,7 +359,6 @@
             @endphp
             @foreach ($content as $item)
             <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center px-5">
-                <img class="w-50" src="{{ asset('img/static/2026_BMC/BMC-img-1.png') }}" alt="2026_BMC" loading="lazy">
                 <h3 class="h02 my-4">{{ $item['title'] }}</h3>
                 <ul class="text-start">
                     @foreach ($item['description'] as $desc)
@@ -381,69 +419,80 @@
                 </p>
             </div>
             <div class="col-12 col-lg-6 mb-4">
-                <div class="d-flex justify-content-center justify-content-lg-end align-content-center">
-                    <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC-img-5.png') }}" alt="2026_BMC" loading="lazy">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <img
+                        class="img-fluid"
+                        src="{{ asset('img/static/2026_BMC/BMC-img-8.png') }}"
+                        alt="2026_BMC"
+                        loading="lazy">
                 </div>
             </div>
-        </div>
 
-        <div class="row d-flex flex-column flex-lg-row mt-5">
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="d-flex justify-content-center justify-content-lg-start align-content-center">
-                    <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC-img-5.png') }}" alt="2026_BMC" loading="lazy">
+            <div class="row d-flex flex-column flex-lg-row mt-5">
+                <div class="col-12 col-lg-6 mb-4">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <img
+                            class="img-fluid"
+                            src="{{ asset('img/static/2026_BMC/BMC-img-9.png') }}"
+                            alt="2026_BMC"
+                            loading="lazy">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 d-flex flex-column">
+                    <p class="fs-2 lh-sm fw-bold">
+                        What makes the Market Sensing Program different
+                    </p>
+                    <p class="fs-5 my-4">
+                        More than understanding a market, this program offers a structured learning experience, including:
+                    </p>
+                    <ul class="fs-5">
+                        <li>All-access passes to BMC conferences and showcases</li>
+                        <li>Office, studio, and creative hub visits arranged by BMC</li>
+                        <li>Observation slots in PH-delegation roundtable sessions</li>
+                        <li>Networking access alongside the main PH delegation</li>
+                        <li>Opportunities to learn about Thailand’s music and creative industries</li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 d-flex flex-column">
-                <p class="fs-2 lh-sm fw-bold">
-                    What makes the Market Sensing Program different
-                </p>
-                <p class="fs-5 my-4">
-                    More than understanding a market, this program offers a structured learning experience, including:
-                </p>
-                <ul class="fs-5">
-                    <li>All-access passes to BMC conferences and showcases</li>
-                    <li>Office, studio, and creative hub visits arranged by BMC</li>
-                    <li>Observation slots in PH-delegation roundtable sessions</li>
-                    <li>Networking access alongside the main PH delegation</li>
-                    <li>Opportunities to learn about Thailand’s music and creative industries</li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="row d-flex flex-column-reverse flex-lg-row mt-5">
-            <div class="col-12 col-lg-6 d-flex flex-column">
-                <p class="fs-2 fw-bold">
-                    Apply for the Market-Sensing Program
-                </p>
-                <p class="fs-5 my-4">
-                    Market sensing builds brand familiarity, deepens recognition, and opens doors. At Bangkok Music City 2026, you’ll have the chance to showcase your talent, meet industry movers, and discover new pathways to success.
-                    <br>
-                    <br>
-                    In this program, delegates can explore new markets, find potential collaborators, and expand their market reach. Elevate your artistic journey and be well-equipped for future participation in creative export initiatives.
-                    <br>
-                    <br>
-                    Join the delegation and take the next step through our program today!
-                    <br>
-                    <br>
-                    <strong>
-                        Package Fee: USD 600
-                    </strong>
-                    <br>
-                    <i>
-                        Flights and accommodation are not included.
-                    </i>
-                </p>
-                <div class="d-flex align-items-center">
-                    <button type="button" class="button rounded-2">Apply Now</button>
+            <div class="row d-flex flex-column-reverse flex-lg-row mt-5">
+                <div class="col-12 col-lg-6 d-flex flex-column">
+                    <p class="fs-2 fw-bold">
+                        Apply for the Market-Sensing Program
+                    </p>
+                    <p class="fs-5 my-4">
+                        Market sensing builds brand familiarity, deepens recognition, and opens doors. At Bangkok Music City 2026, you’ll have the chance to showcase your talent, meet industry movers, and discover new pathways to success.
+                        <br>
+                        <br>
+                        In this program, delegates can explore new markets, find potential collaborators, and expand their market reach. Elevate your artistic journey and be well-equipped for future participation in creative export initiatives.
+                        <br>
+                        <br>
+                        Join the delegation and take the next step through our program today!
+                        <br>
+                        <br>
+                        <strong>
+                            Package Fee: USD 600
+                        </strong>
+                        <br>
+                        <i>
+                            Flights and accommodation are not included.
+                        </i>
+                    </p>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="button3 rounded-2">Apply Now</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6 mb-4">
-                <div class="d-flex justify-content-center justify-content-lg-end align-content-center">
-                    <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC-img-5.png') }}" alt="2026_BMC" loading="lazy">
+                <div class="col-12 col-lg-6 mb-4">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <img
+                            class="img-fluid"
+                            src="{{ asset('img/static/2026_BMC/BMC-img-10.png') }}"
+                            alt="2026_BMC"
+                            loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 {{-- COLLABORATION --}}
