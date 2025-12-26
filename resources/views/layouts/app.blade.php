@@ -317,7 +317,7 @@
     @if(!(request()->is('play') || request()->is('play/tetris') || request()->is('play/snake') ))
         <!-- PGDX Character START -->
             <a href="{{ route('play.leaderboard') }}" id="floating-character" target="_blank" rel="noopener noreferrer">
-                <img src="{{ asset('/img/character_01.gif') }}" alt="Cute floating character">
+                <img src="{{ asset('/img/character_02.gif') }}" alt="Cute floating character">
                 <div id="speech-balloon"></div>
             </a>
         <!-- PGDX Character END -->
