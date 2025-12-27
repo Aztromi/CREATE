@@ -87,7 +87,6 @@
     .blur {
         width: 100%;
         height: 200px;
-        background-image: url("{{ asset('img/home_about/thumbnails/animation.png') }}");
         object-fit: cover;
         position: absolute;
         background-size: cover;
@@ -96,6 +95,80 @@
         top: 0;
         left: 0;
         z-index: 0;
+    }
+
+    .article-blur {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .blur::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        animation: pulse 2s infinite;
+    }
+
+    .article-blur::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        animation: pulse 2s infinite;
+    }
+
+    .blur.loaded::before,
+    .article-blur.loaded::before {
+        content: none;
+    }
+
+    @keyframes pulse {
+        0% {
+            background-color: rgb(255, 255, 255, 0);
+        }
+
+        50% {
+            background-color: rgb(255, 255, 255, 0.1);
+        }
+
+        100% {
+            background-color: rgb(255, 255, 255, 0);
+        }
+    }
+
+    .blur.loaded>img,
+    .article-blur.loaded>img {
+        opacity: 1;
+        transition: opacity 500ms ease-in-out;
+    }
+
+    .blur>img,
+    .article-blur>img {
+        opacity: 0;
+    }
+
+    .animation {
+        background-image: url("{{ asset('img/home_about/thumbnails/animation.png') }}");
+    }
+
+    .communication {
+        background-image: url("{{ asset('img/home_about/thumbnails/communication_design.png') }}");
+    }
+
+    .game_development {
+        background-image: url("{{ asset('img/home_about/thumbnails/game_development.png') }}");
+    }
+
+    .performing_arts {
+        background-image: url("{{ asset('img/home_about/thumbnails/performing_arts.png') }}");
+    }
+
+    .visual_arts {
+        background-image: url("{{ asset('img/home_about/thumbnails/visual_arts.png') }}");
     }
 
     .flip-card-front .card-content,
@@ -317,7 +390,7 @@
                 <span class="gen-text">CREATEPhilippines supports all creative domains, but it has the following sectors as its focus:</span>
             </div>
         </div>
-        <div class="row justify-content-center mt-3 priority-sectors">
+        <div class="row justify-content-center mt-3">
             <!-- @php
             $sectors = [
             ['title' => 'Animation', 'image' => 'animation.webp', 'desc' => 'Drives digital storytelling in ads, games, and film, boosting innovation and global reach.'],
@@ -355,15 +428,15 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <div class="blur">
-                                <img src="{{ asset('img/home_about/animations.webp') }}" alt="" loading="lazy">
+                            <div class="blur animation">
+                                <img src="{{ asset('img/home_about/animation.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
                                 <h4>Animation</h4>
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <div>
+                            <div class="blur animation">
                                 <img src="{{ asset('img/home_about/animation.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -378,7 +451,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <div>
+                            <div class="blur communication">
                                 <img src="{{ asset('img/home_about/communication_design.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -386,7 +459,7 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <div>
+                            <div class="blur communication">
                                 <img src="{{ asset('img/home_about/communication_design.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -401,7 +474,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <div>
+                            <div class="blur game_development">
                                 <img src="{{ asset('img/home_about/game_development.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -409,7 +482,7 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <div>
+                            <div class="blur game_development">
                                 <img src="{{ asset('img/home_about/game_development.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -424,7 +497,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <div>
+                            <div class="blur performing_arts">
                                 <img src="{{ asset('img/home_about/performing_arts.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -432,7 +505,7 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <div>
+                            <div class="blur performing_arts">
                                 <img src="{{ asset('img/home_about/performing_arts.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -447,7 +520,7 @@
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <div>
+                            <div class="blur visual_arts">
                                 <img src="{{ asset('img/home_about/visual_arts.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -455,7 +528,7 @@
                             </div>
                         </div>
                         <div class="flip-card-back">
-                            <div>
+                            <div class="blur visual_arts">
                                 <img src="{{ asset('img/home_about/visual_arts.webp') }}" alt="" loading="lazy">
                             </div>
                             <div class="card-content">
@@ -491,8 +564,12 @@
             {{-- FEATURED ARTICLES --}}
             <a href="{{ route('articles.view', ['slug' => $featuredArticle->latestSlug->value]) }}">
                 <article>
-                    <div>
-                        <img src="{{ asset('folder_articles/' . $featuredArticle->asset->path) }}" alt="image info" class="img-fluid">
+                    @php
+                    $latestArticleImg = pathinfo($featuredArticle->asset->path, PATHINFO_FILENAME);
+
+                    @endphp
+                    <div class="article-blur" style="background-image: url('{{ asset('folder_articles/thumbnails/' . $latestArticleImg . '.png') }}');">
+                        <img src="{{ asset('folder_articles/medium-thumbnails/' . $latestArticleImg . '.png') }}" alt="image info" class="img-fluid" loading="lazy">
                     </div>
                     <div>
                         <h3>{{ $featuredArticle->name }}</h3>
@@ -505,8 +582,12 @@
             @foreach($latestArticles as $lArticle)
             <a href="{{ route('articles.view', ['slug' => $lArticle->latestSlug->value]) }}">
                 <article>
-                    <div>
-                        <img src="{{ asset('folder_articles/' . $lArticle->asset->path) }}" alt="image info" class="img-fluid">
+                    @php
+                    $articleimg = pathinfo($lArticle->asset->path, PATHINFO_FILENAME);
+
+                    @endphp
+                    <div class="article-blur" style="background-image: url('{{ asset('folder_articles/thumbnails/' . $articleimg . '.png') }}');">
+                        <img src="{{ asset('folder_articles/medium-thumbnails/' . $articleimg . '.png') }}" alt="" class="img-fluid" loading="lazy">
                     </div>
                     <div>
                         <h3>{{ $lArticle->name }}</h3>
@@ -593,7 +674,24 @@ No Creative Future Events
         </div>
     </div>
 </div>
+<script>
+    function handleBlurLoad(selector) {
+        document.querySelectorAll(selector).forEach(div => {
+            const img = div.querySelector('img');
+            if (!img) return;
 
+            const loaded = () => div.classList.add('loaded');
+
+            img.complete && img.naturalWidth !== 0 ?
+                loaded() :
+                img.addEventListener('load', loaded, {
+                    once: true
+                });
+        });
+    }
+
+    handleBlurLoad('.blur, .article-blur');
+</script>
 @endsection
 
 @push('scripts-bottom')
@@ -672,5 +770,4 @@ No Creative Future Events
         });
     });
 </script>
-
 @endpush

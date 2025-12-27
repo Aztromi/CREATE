@@ -9,9 +9,12 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 use App\Models\Article;
 use App\Models\Story;
+use Tinify\Source;
+use Tinify\Tinify;
 
 class ThumbnailController extends Controller
 {
@@ -20,214 +23,79 @@ class ThumbnailController extends Controller
         $stories = Story::with([
             'user',
             'slugs',
-        ])->paginate(100);
+        ])->where('ownerable_id', 39)->paginate(100);
         return view('admin.thumbnail.thumbnailmaker', ['stories' => $stories]);
     }
+    // public function articleThumbnails()
+    // {
+    //     $featuredArticle = Article::has('asset')->with('asset', 'latestSlug')
+    //         ->where([
+    //             ['featured', 1],
+    //             ['published', 'published']
+    //         ])
+    //         ->orderBy('date', 'desc')->first();
+
+    //     $latestArticles = Article::has('asset')->with('asset', 'latestSlug')
+    //         ->where([
+    //             ['published', 'published'],
+    //             ['id', '<>', $featuredArticle->id]
+    //         ])
+    //         ->latest()->take(6)->get();
+    // }
 
     public function updateThumbnails(Request $request)
     {
+
         $ids = $request->ids;
-        Story::whereIn('id', $ids)->update([
-            'thumbnail' => 'new-thumbnail.jpg'
-        ]);
-        return back()->with('success', 'Thumbnail updated!');
+        $images = $request->images;
+        $pictures = [];
+        $merged = collect($ids)->combine($images)->all();
+        foreach ($merged as $id => $images) {
+            $pictures[] = $this->PictureFinder($id, $images);
+        }
+
+        return back()->with('success', $pictures);
     }
-
-    public function validateAndSave(Request $request)
+    private function PictureFinder($id, $imagePath)
     {
+        // Full path of the original image
+        $source = public_path($imagePath);
 
-        $article_id = $request->input('article_id', '');
-        $toEdit = $article_id == '' ? false : true;
-        $updateMasthead = $toEdit == false ? true : ($request->input('masthead-change') == 1 ? true : false);
-
-        if ($response = $this->validateForm($request, $updateMasthead)) {
-            return $response;
+        // Check if source image exists
+        if (!file_exists($source)) {
+            return null;
         }
 
-        $title = trim($request->input('title'));
-        $subheader = trim($request->input('subheader')) ?: null;
-        $banner_caption = trim($request->input('banner_caption')) ?: null;
-        $author = trim($request->input('author')) ?: null;
-        $article_content = trim($request->input('article-content'));
-        $publish = $request->has('publish') && $request->input('publish') == 'on' ? "published" : "draft";
-        $feature = $request->has('feature') && $request->input('feature') == 'on' ? 1 : 0;
-        $industry = 7; //filler
-        $tags = $request->input('cField', []);
+        // Extract directory and filename
+        $directory = dirname($imagePath); // stories
+        $filename  = basename($imagePath); // image.jpg
 
-        if ($toEdit) {
-            //UPDATE
-            $article = Article::find($article_id);
+        // Thumbnail directory (inside stories)
+        $thumbnailDir = public_path($directory . '/thumbnails');
 
-            $publish_date = $request->has('publish') && $article->date == null ? Carbon::today()->toDateString() : $article->date;
-
-            $article->update([
-                'name' => $title,
-                'subheader' => $subheader,
-                'date' => $publish_date,
-                'featured' => $feature,
-                'published' => $publish,
-                'content' => $article_content,
-                'banner_caption' => $banner_caption,
-                'author' => $author,
-                'industry' => $industry
-            ]);
-
-            $this->slugHandler(Article::class, $article, $title, 'edit');
-        } else {
-            //ADD
-            $publish_date = $request->has('publish') ? Carbon::today()->toDateString() : null;
-
-            $article = Article::create([
-                'name' => $title,
-                'subheader' => $subheader,
-                'date' => $publish_date,
-                'featured' => $feature,
-                'published' => $publish,
-                'content' => $article_content,
-                'banner_caption' => $banner_caption,
-                'author' => $author,
-                'industry' => $industry
-            ]);
-
-            $this->slugHandler(Article::class, $article, $title, 'add');
+        // Create thumbnails folder if it doesn't exist
+        if (!file_exists($thumbnailDir)) {
+            mkdir($thumbnailDir, 0755, true);
         }
+        // Destination file path
+        $destination = $thumbnailDir . '/' . $filename;
 
-        $article->tags()->delete();
-
-        if (!empty($tags)) {
-            foreach ($tags as $tag) {
-                $val = explode("||", $tag);
-
-                $article->tags()->create([
-                    'category' => $val[0] ?? '',
-                    'name' => $val[1] ?? '',
-                    'type' => 'tag'
-                ]);
-            }
-        }
-
-        if ($updateMasthead) {
-            $image = $request->file('masthead');
-
-            $filename = $this->storeImage($image, 'articles_content', 1200, 1200);
-            $filename_md = $this->storeImage($image, 'articles_content', 800, 800);
-            $filename_sm = $this->storeImage($image, 'articles_content', 400, 400);
-
-            $existingAsset = $article->asset;
-
-            if ($existingAsset) {
-                if (Storage::exists("articles_content/" . $existingAsset->path)) {
-                    Storage::delete("articles_content/" . $existingAsset->path);
-                }
-
-                if (Storage::exists("articles_content/" . $existingAsset->medium_thumbnail)) {
-                    Storage::delete("articles_content/" . $existingAsset->medium_thumbnail);
-                }
-
-                if (Storage::exists("articles_content/" . $existingAsset->small_thumbnail)) {
-                    Storage::delete("articles_content/" . $existingAsset->small_thumbnail);
-                }
-            }
-
-            $article->asset()->updateOrCreate([], [
-                'path' => $filename,
-                'medium_thumbnail' => $filename_md,
-                'small_thumbnail' => $filename_sm,
-                'type' => 'image',
-                'source' => 'admin',
-                'name' => 'Banner',
-            ]);
-        }
-
-
-
-        return response()->json(['validated' => true, 'urlRedirect' => route('admin.article-list')], 200);
-    }
-
-    private function validateForm($request, $masthead_check)
-    {
-        $rules = [
-            'title' => 'required|string|max:200',
-            'subheader' => 'nullable|string|max:200',
-            'banner_caption' => 'nullable|string|max:200',
-            'author' => 'nullable|string|max:200',
-            'article-content' => 'required|string',
-            'publish' => 'nullable|in:on',
-            'feature' => 'nullable|in:on',
-
-            'cField' => 'required|array',
-            // 'cField.*.category' => 'required|string|max:255',
-            // 'cField.*.name' => 'required|string|max:255',
-        ];
-
-        $messages = [
-            'title.required' => 'Required field. ',
-            'title.string' => 'Only text values are allowed. ',
-            'title.max' => 'Value has exceeded the limit. ',
-
-            'subheader.string' => 'Only text values are allowed. ',
-            'subheader.max' => 'Value has exceeded the limit. ',
-
-            'banner_caption.string' => 'Only text values are allowed. ',
-            'banner_caption.max' => 'Value has exceeded the limit. ',
-
-            'author.string' => 'Only text values are allowed. ',
-            'author.max' => 'Value has exceeded the limit. ',
-
-            'article-content.required' => 'Required field. ',
-            'article-content.string' => 'Only text values are allowed. ',
-
-            'cField.required' => 'Please provide at least one category entry.',
-            'cField.array' => 'The category entries must be submitted as an array.',
-            // 'cField.*.category.required' => 'Each entry must have a category.',
-            // 'cField.*.category.string' => 'The category must be a valid text.',
-            // 'cField.*.category.max' => 'The category must not exceed 255 characters.',
-            // 'cField.*.name.required' => 'Each entry must have a name.',
-            // 'cField.*.name.string' => 'The name must be a valid text.',
-            // 'cField.*.name.max' => 'The name must not exceed 255 characters.',
-        ];
-
-        if ($masthead_check) {
-            $rules['masthead'] = 'required|image|mimes:jpeg,png,jpg';
-
-            $messages += [
-                'masthead.required' => 'Image is required.',
-                'masthead.image' => 'The uploaded file must be an image.',
-                'masthead.mimes' => 'The image must be of type: jpeg, png, jpg.',
-            ];
-        }
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return response()->json(['validated' => false, 'errors' => $validator->errors()], 422);
-        }
-
-        return null;
-    }
-
-    public function storeImage($image, $path, $maxWidth, $maxHeight)
-    {
-
-        $img = Image::make($image->getRealPath());
-
-        if ($img->width() > $maxWidth) {
-            $img->resize($maxWidth, null, function ($constraint) {
+        // Copy only if file does not already exist
+        if (!file_exists($destination)) {
+            Image::make($source)->resize(400, null, function ($constraint) {
                 $constraint->aspectRatio();
-                $constraint->upsize(); // Prevent upsizing
-            });
+                $constraint->upsize();
+            })
+                ->save($destination, 80);
+            try {
+                Source::fromFile($destination)->toFile($destination);
+            } catch (\Exception $e) {
+                Log::warning('TinyPNG failed: ' . $e->getMessage());
+            }
         }
-
-        if ($img->height() > $maxHeight) {
-            $img->crop($img->width(), $maxHeight);
-        }
-
-        $baseFilename = md5(time());
-        $randomString = Str::random(3); // Generate a random 3-character string
-        $filename = "{$baseFilename}{$randomString}." . $image->getClientOriginalExtension();
-
-        Storage::put("{$path}/{$filename}", (string) $img->encode());
-
-        return $filename;
+        $updated = Story::where('id', $id)->update([
+            'thumbnail' => $filename
+        ]);
+        return $updated ? "SUCCESS - " . $filename : null;
     }
 }

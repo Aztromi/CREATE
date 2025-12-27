@@ -16,7 +16,7 @@
         animation: pulse 2s infinite;
     }
 
-    .blur-div.blur-div.loaded::before {
+    .blur-div.loaded::before {
         content: none;
     }
 
@@ -36,11 +36,11 @@
 
     .blur-div.loaded>img {
         opacity: 1;
+        transition: opacity 500ms ease-in-out;
     }
 
     .blur-div>img {
         opacity: 0;
-        transition: opacity 200ms ease-in-out;
     }
 
     .animahenasyon {
@@ -86,12 +86,6 @@
         }
     }
 
-    .create-lab {
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 450px;
-    }
 </style>
 <section class="container-fluid bg_black p-0">
     <div id="carouselHome" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
@@ -208,9 +202,8 @@
     //         }
     //     })
     // });
-const carousel = document.querySelector('#carouselHome');
     // carousel.addEventListener('slid.bs.carousel', () => {
-    const blurDivs = carousel.querySelectorAll('.blur-div');
+    const blurDivs = document.querySelectorAll('.blur-div');
     blurDivs.forEach(div => {
         const img = div.querySelector("img");
 

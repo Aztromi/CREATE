@@ -8,14 +8,22 @@
         @csrf
 
         @foreach ($stories as $story)
-        <input type="hidden" name="ids[]" value="{{ $story->id }}">
+        <input type="hidden" name="ids[]" value="{{ $story->id  }}">
+        <input type="hidden" name="images[]" value="{{ 'folder_user-uploads/' . $story->ownerable_id . '/stories/' . $story->cover_image }}">
         @endforeach
 
         <button type="submit" class="btn btn-secondary">Add Thumbnails</button>
     </form>
     @if (session('success'))
     <div style="padding: 10px; background: #d1e7dd; color: #0f5132; border-radius: 5px; margin-bottom: 15px;">
-        {{ session('success') }}
+        <strong>Updated thumbnails:</strong>
+        <ul>
+            @foreach (session('success') as $item)
+            @if ($item)
+            <li>{{ $item }}</li>
+            @endif
+            @endforeach
+        </ul>
     </div>
     @endif
     <div class="table-responsive mt-60 mb-60">
@@ -40,7 +48,6 @@
                     <td class="px-2">{{ $story->cover_image }}</td>
                     <td class="px-2">
                         <img src="{{ asset('folder_user-uploads/' . $story->ownerable_id . '/stories/' . rawurlencode($story->cover_image)) }}" width="300px">
-
                     </td>
                     <td class="px-2">{{ $story->thumbnail }}</td>
                     <td class="px-2">{{ $story->link }}</td>
