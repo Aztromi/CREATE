@@ -27,33 +27,32 @@ class ArticlesController extends Controller
             ])
             // ->latest()->take(20)->get();
             ->latest()->paginate(10);
-            
-            // To be replaced with pagination approacH
-            // return view('website.articles')
-            //     ->with('featuredArticle', $featuredArticle)
-            //     ->with(compact('latestArticles', $latestArticles));
 
-            // PAGINATION APPROACH
-            return view('website.articles', ['latestArticles' => $latestArticles])
+        // To be replaced with pagination approacH
+        // return view('website.articles')
+        //     ->with('featuredArticle', $featuredArticle)
+        //     ->with(compact('latestArticles', $latestArticles));
+
+        // PAGINATION APPROACH
+        return view('website.articles', ['latestArticles' => $latestArticles])
             ->with('featuredArticle', $featuredArticle);
     }
 
     public function view($slug)
     {
         $article = Article::has('asset')->with('asset', 'latestSlug', 'bookmarks')
-            ->whereHas('slugs', function($query) use ($slug){
+            ->whereHas('slugs', function ($query) use ($slug) {
                 $query->where('value', $slug);
             })
             ->where('published', 'published')
             ->first();
 
-        if(!$article)
-        {
+        if (!$article) {
             abort(404);
         }
 
 
-        
+
         $randomRelatedArticles = Article::has('asset')->with('asset', 'latestSlug')
             ->where([
                 ['published', 'published'],
@@ -65,18 +64,14 @@ class ArticlesController extends Controller
 
         $bkMark = 'false';
 
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $userId = Auth::user()->id;
 
             $articleBookmark = $article->bookmarks()->where('user_id', $userId)->count();
-            if($articleBookmark>0)
-            {
+            if ($articleBookmark > 0) {
                 $bkMark = 'true';
             }
-        }
-        else
-        {
+        } else {
             $userId = 0;
         }
 
@@ -87,6 +82,6 @@ class ArticlesController extends Controller
         return view('website.articleView')
             ->with('article', $article)
             ->with('bkMark', $bkMark)
-            ->with(compact('randomRelatedArticles', $randomRelatedArticles));
+            ->with('randomRelatedArticles', $randomRelatedArticles);
     }
 }

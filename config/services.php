@@ -40,6 +40,8 @@ return [
     'recaptcha' => [
         'key' => env('GOOGLE_RECAPTCHA_SITE_KEY_V3'),
         'secret' => env('GOOGLE_RECAPTCHA_SECRET_KEY_V3'),
-        ],
-
+    ],
+    'tinypng' => [
+        'key' => env('TINIFY_API_KEY'),
+    ],
 ];

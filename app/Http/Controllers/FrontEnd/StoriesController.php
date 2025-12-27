@@ -58,8 +58,8 @@ class StoriesController extends Controller
 
         return view('website.creative-workView')
             ->with('bkMark', $bkMark)
-            ->with(compact('work', $work))
-            ->with(compact('otherWorks', $otherWorks))
+            ->with('work', $work)
+            ->with('otherWorks', $otherWorks)
             ->with('displayName', $displayName);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Tinify\Tinify;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
         // TEMP HIDE while DEV
         Blade::if('user', function () {
-            return auth()->check() && ( Auth::user()->user_role_id == null && Auth::user()->type == "normal" && (Auth::user()->verified == -1 || Auth::user()->verified == 0 || Auth::user()->verified == 1));
+            return auth()->check() && (Auth::user()->user_role_id == null && Auth::user()->type == "normal" && (Auth::user()->verified == -1 || Auth::user()->verified == 0 || Auth::user()->verified == 1));
         });
 
         Blade::if('usermember', function () {
@@ -51,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             return auth()->check() && ((auth()->user()->user_role_id == null && Auth::user()->type == "normal" && (auth()->user()->verified == 0 || auth()->user()->verified == 1)));
         });
 
-        
+
 
 
         // ADMIN Directives
@@ -74,6 +75,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admineditor', function () {
             return auth()->check() && auth()->user()->user_role_id == 1 && (auth()->user()->type == "editor" || auth()->user()->type == "super");
         });
-        
+        \Tinify\setKey(config('services.tinypng.key'));
     }
 }
