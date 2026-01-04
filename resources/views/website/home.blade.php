@@ -261,7 +261,7 @@
                 @foreach($works as $work)
                 <div class="image">
                     <a href="{{ route('creative-works.view', ['slug' => $work->homeStoryLatest->latestSlug->value]) }}">
-                        <img src="{{ asset('folder_user-uploads/' . $work->id . '/stories/' . $work->homeStoryLatest->cover_image) }}" alt="{{ $work->homeStoryLatest->latestSlug->value }}" loading="lazy">
+                        <img src="{{ asset('folder_user-uploads/' . $work->id . '/stories/thumbnails/' . $work->homeStoryLatest->cover_image) }}" alt="{{ $work->homeStoryLatest->latestSlug->value }}" loading="lazy">
                     </a>
 
                     <div class="creative-details">

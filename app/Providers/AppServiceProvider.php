@@ -75,6 +75,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('admineditor', function () {
             return auth()->check() && auth()->user()->user_role_id == 1 && (auth()->user()->type == "editor" || auth()->user()->type == "super");
         });
-        \Tinify\setKey(config('services.tinypng.key'));
+        Tinify::setKey(config('services.tinypng.key'));
     }
 }

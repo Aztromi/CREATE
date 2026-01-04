@@ -20,10 +20,9 @@ class ThumbnailController extends Controller
 {
     public function index()
     {
-        $stories = Story::with([
-            'user',
-            'slugs',
-        ])->where('ownerable_id', operator: 74)->paginate(100);
+        $stories = Story::with(['user', 'slugs'])
+            ->whereIn('ownerable_id', [91])
+            ->paginate(100);
         return view('admin.thumbnail.thumbnailmaker', ['stories' => $stories]);
     }
     // public function articleThumbnails()

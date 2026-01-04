@@ -49,7 +49,9 @@
                     <td class="px-2">
                         <img src="{{ asset('folder_user-uploads/' . $story->ownerable_id . '/stories/' . rawurlencode($story->cover_image)) }}" width="300px">
                     </td>
-                    <td class="px-2">{{ $story->thumbnail }}</td>
+                    <td class="px-2">
+                        <img src="{{ asset('folder_user-uploads/' . $story->ownerable_id . '/stories/thumbnails/' . rawurlencode($story->cover_image)) }}" width="300px">
+                    </td>
                     <td class="px-2">{{ $story->link }}</td>
                 </tr>
                 @endforeach
