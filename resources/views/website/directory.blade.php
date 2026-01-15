@@ -465,7 +465,7 @@
                                                 <div class="col-3 col-md-2 col-lg-1 profile-img my-auto">
                                                     <div class="img-container @if($creative['verified']) verified @endif">
                                                         <img src="{{ $creative['profile_photo'] }}" alt="{{ $creative['name'] }}"
-                                                            onerror="this.onerror=null; this.src='{{ asset('/img/default_profile_img.png') }}';">
+                                                            onerror="this.onerror=null; this.src='{{ asset('/img/default_profile_img.png') }}';" loading="lazy">
                                                     </div>
                                                 </div>
                                                 <div class="col-9 col-md-7 col-lg-9 my-auto">
@@ -509,7 +509,7 @@
                                                                             @foreach($chunk as $story)
                                                                                 <div class="col-md-4 align-content-center">
                                                                                     <a href="{{ route('creative-works.view', ['slug' => $story->latestSlug->value]) }}">
-                                                                                        <img src="{{ asset('folder_user-uploads/' . $creative['c_id'] . '/stories/' . $story->cover_image) }}" 
+                                                                                        <img src="{{ asset('folder_user-uploads/' . $creative['c_id'] . '/stories/thumbnails/' . $story->cover_image) }}" 
                                                                                             alt="{{ $creative['c_id'] }}COMP{{ $story->ownerable_id }}" 
                                                                                             onerror="this.onerror=null; this.src='{{ asset('img/banner-default.jpg') }}';"
                                                                                             class="img-fluid"

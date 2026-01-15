@@ -31,10 +31,8 @@ class StoriesController extends Controller
 
         $otherWorks = Story::with('latestSlug')->where('ownerable_type', $work->ownerable_type)->where('ownerable_id', $work->ownerable_id)->where('id', '<>', $work->id)->take(5)->get();
         
-
         $displayName = $work->user->profile->dispName;
-
-
+        
         $bkMark = 'false';
 
         if(Auth::check())

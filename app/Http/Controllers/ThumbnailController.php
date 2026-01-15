@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Models\Article;
 use App\Models\Story;
+use App\Models\UProfile;
 use Tinify\Source;
 use Tinify\Tinify;
 
@@ -21,9 +22,18 @@ class ThumbnailController extends Controller
     public function index()
     {
         $stories = Story::with(['user', 'slugs'])
-            ->whereIn('ownerable_id', [91])
+            ->whereIn('ownerable_id', values: [2436])
             ->paginate(100);
-        return view('admin.thumbnail.thumbnailmaker', ['stories' => $stories]);
+        // $perPage = 20;
+        // $page = 14;
+        $profileData = UProfile::with('uindie')
+            ->whereHas('uindie', function ($query) {
+                $query->whereNotNull('display_photo');
+            })
+            // ->skip(($page - 1) * $perPage)
+            // ->take($perPage)
+            ->get();
+        return view('admin.thumbnail.thumbnailmaker', ['stories' => $stories, 'profileData' => $profileData]);
     }
     // public function articleThumbnails()
     // {
@@ -81,20 +91,25 @@ class ThumbnailController extends Controller
 
         // Copy only if file does not already exist
         if (!file_exists($destination)) {
-            Image::make($source)->resize(400, null, function ($constraint) {
+            // Stories
+            // Image::make($source)->resize(400, null, function ($constraint) {
+            //     $constraint->aspectRatio();
+            //     $constraint->upsize();
+            // })->save($destination, 80);
+            // Profiles
+            Image::make($source)->resize(100, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })
-                ->save($destination, 80);
+            })->save($destination, 80);
             try {
                 Source::fromFile($destination)->toFile($destination);
             } catch (\Exception $e) {
                 Log::warning('TinyPNG failed: ' . $e->getMessage());
             }
         }
-        $updated = Story::where('id', $id)->update([
-            'thumbnail' => $filename
-        ]);
-        return $updated ? "SUCCESS - " . $filename : null;
+        // $updated = Story::where('id', $id)->update([
+        //     'thumbnail' => $filename
+        // ]);
+        return file_exists($destination) ? "SUCCESS - " . $filename : null;
     }
 }

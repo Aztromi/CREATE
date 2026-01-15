@@ -122,9 +122,9 @@ class ProfilesController extends Controller
             return view('website.creative-profile-main')
             ->with('tabView', $tabView)
             ->with('bkMark', $bkMark)
-            ->with(compact('profileData', $profileData))
-            ->with(compact('articles', $articles))
-            ->with(compact('videos', $videos));
+            ->with('profileData', $profileData)
+            ->with('articles', $articles)
+            ->with('videos', $videos);
         }
 
         

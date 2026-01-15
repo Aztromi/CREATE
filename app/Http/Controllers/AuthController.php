@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class HomeController extends Controller
 {
     /** !!! Authenticated Controller (Constructor set)
      * Create a new controller instance.

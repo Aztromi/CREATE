@@ -67,7 +67,7 @@ class DirectoryController extends Controller
                 return [
                     'c_id' => $c->id,
                     'name' => $c->profile->dispName ?? '',
-                    'profile_photo' => optional($c->profile->uindie)->display_photo ? asset('folder_user-uploads/' . $c->id . '/Profile/' . $c->profile->uindie->display_photo) : asset('img/default_profile_img.png'),
+                    'profile_photo' => optional($c->profile->uindie)->display_photo ? asset('folder_user-uploads/' . $c->id . '/Profile/thumbnails/' . $c->profile->uindie->display_photo) : asset('img/default_profile_img.png'),
                     'link' => route('works', ['slug' => optional($c->profile->latestSlug)->value ?? '']),
                     'date' => $c->profile->updated_at,
                     'verified' => $c->verified == 1 ? true : false,

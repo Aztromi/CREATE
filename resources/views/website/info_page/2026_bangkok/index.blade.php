@@ -303,14 +303,30 @@
             For the first time, the country will join Bangkok Music City through an official, country-led delegation under <Strong>CREATEPhilippines.</Strong> Through CITEM’s partnership with BMC, this initiative opens new opportunities for Filipino artists to showcase their talent, build international networks, and access regional and global markets.
         </p>
     </div>
-</section>
-
-<!-- {{-- ART SUBMISSION --}}
-    <section class="p-0 artsubmission d-flex flex-column justify-content-center">
-        <div class="container">
-            <img class="w-100" src="{{ asset('img/static/2026_BMC/BMC-img.png') }}" alt="2026_BMC" loading="lazy">
+    <div class="container">
+        <div class="row">
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_1.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_2.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_3.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_4.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_5.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
+                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_6.png') }}" alt="2026_BMC" loading="lazy">
+            </div>
         </div>
-    </section> -->
+
+    </div>
+</section>
 
 {{-- OPPORTUNITIES --}}
 <section class="header4 d-flex flex-column justify-content-center">
@@ -458,25 +474,22 @@
             <div class="row d-flex flex-column-reverse flex-lg-row mt-5">
                 <div class="col-12 col-lg-6 d-flex flex-column">
                     <p class="fs-2 fw-bold">
-                        Apply for the Market-Sensing Program
+                        Secure Your Slot Today!
                     </p>
                     <p class="fs-5 my-4">
-                        Market sensing builds brand familiarity, deepens recognition, and opens doors. At Bangkok Music City 2026, you’ll have the chance to showcase your talent, meet industry movers, and discover new pathways to success.
+                        Don’t miss a trade event where artistry and business meet.
+                        Experience world-class performances and strengthen your music
+                        career across Asia and beyond.
                         <br>
                         <br>
-                        In this program, delegates can explore new markets, find potential collaborators, and expand their market reach. Elevate your artistic journey and be well-equipped for future participation in creative export initiatives.
-                        <br>
-                        <br>
-                        Join the delegation and take the next step through our program today!
-                        <br>
-                        <br>
+                        Be part of the Market Sensing Program! Slots are open until
                         <strong>
-                            Package Fee: USD 600
+                            January 4!
                         </strong>
                         <br>
-                        <i>
-                            Flights and accommodation are not included.
-                        </i>
+                        <br>
+                        Maximize your Bangkok Music City 2026 journey and seize every
+                        opportunity while you can. Click the link to join the program now.
                     </p>
                     <div class="d-flex align-items-center">
                         <button type="button" class="button3 rounded-2">Apply Now</button>

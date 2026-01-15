@@ -127,7 +127,7 @@ Route::prefix('events')->name('events.')->group(function () {
     Route::get('/', function () {
         return redirect()->route('events.creative-events');
     });
-    Route::get('/bmc-2026', [EventsController::class, 'bmc26'])->name('bmc-2026');
+    Route::get('/bmc-2026', [EventsController::class, 'bmc26'])->name('bmc');
     Route::get('/createph-x-mipam', [EventsController::class, 'mipamxsonic25'])->name('createph-x-mipam');
 
     Route::get('/createph-x-mipam/gallery', [EventsController::class, 'citemxmipam24gallery'])->name('createph-x-mipam-gallery');

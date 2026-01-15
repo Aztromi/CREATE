@@ -38,7 +38,7 @@
             <div class="dropdown-submenu">
                 <a class="dropdown-item dropdown-toggle" href="#">Music and Performing Arts </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('events.bmc-2026') }}">BMC</a>
+                    <a class="dropdown-item" href="{{ route('events.bmc') }}">Bangkok Music City</a>
                     <a class="dropdown-item" href="{{ route('events.createph-x-mipam') }}#sonik-sessions">MIPAM</a>
                 </div>
             </div>

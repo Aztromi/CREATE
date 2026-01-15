@@ -270,7 +270,7 @@
                             {{-- ALTERNATE PROFILE PICTURE: public/img/default_profile_img.png --}}
                             <img src="
                                 @if($work->profile->uindie->display_photo)
-                                    {{ @asset('folder_user-uploads/' . $work->id . '/Profile/' . $work->profile->uindie->display_photo) }}
+                                    {{ @asset('folder_user-uploads/' . $work->id . '/Profile/thumbnails/' . $work->profile->uindie->display_photo) }}
                                 @else
                                     {{ @asset('/img/default_profile_img.png') }}
                                 @endif

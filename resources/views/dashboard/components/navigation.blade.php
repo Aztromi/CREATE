@@ -12,6 +12,8 @@
         </a>
       </li>
       <hr> -->
+
+      @userverifiedunverified    
       <li class="nav-item">
         <a href="{{ route('user.edit-account') }}" class="nav-link">
           <i class="nav-icon fa fa-user-shield"></i>
@@ -23,7 +25,7 @@
       <hr>
 
 
-      @userverifiedunverified    
+      
       <li class="nav-item">
         <a href="{{ route('user.creativeWorks.index') }}" class="nav-link">
           <i class="nav-icon fa fa-swatchbook"></i>

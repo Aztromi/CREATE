@@ -70,10 +70,6 @@ class LoginController extends Controller
             // return redirect()->route('admin.index');
             return RouteServiceProvider::ADMIN;
         }
-
-
-
-
     }
 
     protected function authenticated(Request $request, $user)
