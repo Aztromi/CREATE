@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Elsie:wght@400;900&display=swap" rel="stylesheet">
 <style>
     section {
         font-family: "Lato", sans-serif;
@@ -181,6 +181,225 @@
         border: 2px solid whitesmoke;
         color: whitesmoke;
     }
+
+    .singer-image {
+        position: relative;
+    }
+
+    .singer-image img {
+        width: 350px;
+        height: 450px;
+    }
+
+    .blur {
+        min-width: 300px;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 16px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .artist-blur {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC-img-7.png' ) }}");
+        position: relative;
+        display: flex;
+        align-items: center;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 16px;
+        transition: background 0.3s ease-in-out;
+    }
+
+
+    .blur::before,
+    .artist-blur::before {
+        content: "";
+        position: absolute;
+        overflow: hidden;
+        inset: 0;
+        animation: loading 2s infinite;
+    }
+
+    .blur.loaded::before,
+    .artist-blur::before {
+        content: none;
+    }
+
+    .august {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_1.png' ) }}");
+    }
+
+    .bird {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_2.png' ) }}");
+    }
+
+    .delinquent {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_3.png' ) }}");
+    }
+
+    .straight {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_4.png' ) }}");
+    }
+
+    .pedicab {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_5.png' ) }}");
+    }
+
+    .player {
+        background-image: url("{{ asset('img/static/2026_BMC/thumbnails/BMC_artist_6.png' ) }}");
+    }
+
+    .blur.loaded>img,
+    .artist-blur.loaded>img {
+        opacity: 1;
+        transition: opacity 500ms ease-in-out;
+    }
+
+    .blur>img,
+    .artist-blur>img {
+        opacity: 0;
+    }
+
+    @keyframes loading {
+        0% {
+            background-color: rgb(255, 255, 255, 0);
+        }
+
+        50% {
+            background-color: rgb(255, 255, 255, 0.1);
+        }
+
+        100% {
+            background-color: rgb(255, 255, 255, 0);
+        }
+    }
+
+    .singer-description {
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        z-index: 1;
+        padding: 20px;
+        width: fit-content;
+        height: 100%;
+        color: black;
+        font-size: 1.2rem;
+        font-weight: 500;
+        border-radius: 16px;
+    }
+
+    .singer-image:hover .singer-description {
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .singer-container .genre {
+        background-color: #B982BC;
+        font-size: 9px;
+        padding: 10px;
+        text-align: center;
+        margin-top: 1.2rem;
+        margin-bottom: 1.2rem;
+        width: 300px;
+        max-width: 340px;
+    }
+
+    .singer-container .name {
+        color: #334E45;
+        font-size: 40px;
+        font-family: 'Elsie', serif;
+        font-weight: 900;
+        font-style: normal;
+        text-align: center;
+        margin-bottom: 1.2rem;
+
+    }
+
+    .singer-container .socials a {
+        color: #B982BC;
+    }
+
+    .singer-container .socials a:hover {
+        color: #E3F797;
+    }
+
+    .animate-img-1:hover {
+        animation: pulse 1.2s infinite;
+        transition: all;
+    }
+
+    .animate-img-2:hover {
+        animation: rotate 0.5s ease-in-out;
+        transition: all;
+        transform: rotate(45deg);
+    }
+
+    .animate-img-2 {
+        transition: transform 0.4s ease-in-out;
+        transform: rotate(0deg);
+    }
+
+    .animate-img-2:hover {
+        transition: transform 0.4s ease-in-out;
+        transform: rotate(45deg);
+    }
+
+    @keyframes pulse {
+        0% {
+            width: 200px;
+        }
+
+        50% {
+            width: 220px;
+        }
+
+        100% {
+            width: 200px;
+        }
+    }
+
+    .ticket {
+        position: relative;
+        height: 300px;
+    }
+
+    .ticket img {
+        position: absolute;
+        top: 50%;
+        right: 25%;
+        transform-origin: right top;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .animate-img-3 {
+        transform: rotate(60deg);
+    }
+
+    .animate-img-4 {
+        transform: rotate(60deg);
+    }
+
+    .animate-img-5 {
+        transform: rotate(60deg);
+    }
+
+    /* HOVER STATE — fanned out */
+    .ticket:hover .animate-img-3 {
+        transform: rotate(60deg);
+    }
+
+    .ticket:hover .animate-img-4 {
+        transform: rotate(80deg);
+    }
+
+    .ticket:hover .animate-img-5 {
+        transform: rotate(100deg);
+    }
 </style>
 @endsection
 
@@ -305,24 +524,32 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_1.png') }}" alt="2026_BMC" loading="lazy">
+            @foreach ($featured_singers as $singer)
+            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center singer-container">
+                <div class="d-flex justify-content-center">
+                    <div class="singer-image">
+                        <div class="blur {{ $singer->loading }}">
+                            <img class="h-80 img-fluid" src="{{ asset('img/static/2026_BMC/' . $singer->image ) }}" loading="lazy">
+                        </div>
+                        <div class="singer-description" style="background-color: {{ $singer->style }}">
+                            {{ $singer->description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="singer-details d-flex flex-column align-items-center justify-content-center">
+                    <div class="genre">{{ $singer->genre }}</div>
+                    <div class="name">{{ $singer->name }}</div>
+                    <div class="socials d-flex align-items-center justify-content-center gap-4">
+                        <a href="{{ $singer->insta_link }}" target="_blank">
+                            Instagram
+                        </a>
+                        <a href="{{ $singer->listen_link }}" target="_blank">
+                            Listen
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_2.png') }}" alt="2026_BMC" loading="lazy">
-            </div>
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_3.png') }}" alt="2026_BMC" loading="lazy">
-            </div>
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_4.png') }}" alt="2026_BMC" loading="lazy">
-            </div>
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_5.png') }}" alt="2026_BMC" loading="lazy">
-            </div>
-            <div class="mt-4 col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/static/2026_BMC/BMC_artist_6.png') }}" alt="2026_BMC" loading="lazy">
-            </div>
+            @endforeach
         </div>
 
     </div>
@@ -336,43 +563,14 @@
     </div>
     <div class="container text-center mt-4">
         <div class="row">
-            <div>
+            <div class="artist-blur">
                 <img class="img-fluid rounded-3"
                     src="{{ asset('img/static/2026_BMC/BMC-img-7.png') }}"
-                    alt="2026_BMC"
                     loading="lazy">
-                <p class="p03 text-start mt-2">
-                    Source: @muri.music @tedorsenado.photo
-                </p>
             </div>
-            @php
-            $content = [
-            [
-            "title" => "B2B Interactions & Networking",
-            "description" => [
-            "Connect with international counterparts in curated roundtable sessions",
-            "Speak on panels and join global conversations",
-            "Engage in business matching and pitching sessions with agencies, buyers, and industry partners"
-            ]
-            ],
-            [
-            "title" => "Creative Hubs & Conferences",
-            "description" => [
-            "Experience a festival-meets-business environment designed to foster meaningful connections",
-            "Explore key creative spaces across Bangkok’s creative district",
-            "Build relationships with studios, companies, and institutions",
-            ]
-            ],
-            [
-            "title" => "Talent & Artistry Showcase",
-            "description" => [
-            "Perform in and utilize six official Philippine showcase slots",
-            "Present to over 100 festival programmers, music supervisors, and delegates from across Asia",
-            "Spark collaborations and connect with industry leaders",
-            ]
-            ],
-            ];
-            @endphp
+            <p class="p03 text-start mt-2">
+                Source: @muri.music @tedorsenado.photo
+            </p>
             @foreach ($content as $item)
             <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center px-5">
                 <h3 class="h02 my-4">{{ $item['title'] }}</h3>
@@ -437,72 +635,80 @@
             <div class="col-12 col-lg-6 mb-4">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <img
-                        class="img-fluid"
+                        class="img-fluid animate-img-1"
                         src="{{ asset('img/static/2026_BMC/BMC-img-8.png') }}"
                         alt="2026_BMC"
                         loading="lazy">
                 </div>
             </div>
-
-            <div class="row d-flex flex-column flex-lg-row mt-5">
-                <div class="col-12 col-lg-6 mb-4">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <img
-                            class="img-fluid"
-                            src="{{ asset('img/static/2026_BMC/BMC-img-9.png') }}"
-                            alt="2026_BMC"
-                            loading="lazy">
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6 d-flex flex-column">
-                    <p class="fs-2 lh-sm fw-bold">
-                        What makes the Market Sensing Program different
-                    </p>
-                    <p class="fs-5 my-4">
-                        More than understanding a market, this program offers a structured learning experience, including:
-                    </p>
-                    <ul class="fs-5">
-                        <li>All-access passes to BMC conferences and showcases</li>
-                        <li>Office, studio, and creative hub visits arranged by BMC</li>
-                        <li>Observation slots in PH-delegation roundtable sessions</li>
-                        <li>Networking access alongside the main PH delegation</li>
-                        <li>Opportunities to learn about Thailand’s music and creative industries</li>
-                    </ul>
+        </div>
+        <div class="row d-flex flex-column flex-lg-row mt-5">
+            <div class="col-12 col-lg-6 mb-4">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <img
+                        class="img-fluid animate-img-2"
+                        src="{{ asset('img/static/2026_BMC/BMC-img-9.png') }}"
+                        alt="2026_BMC"
+                        loading="lazy">
                 </div>
             </div>
-
-            <div class="row d-flex flex-column-reverse flex-lg-row mt-5">
-                <div class="col-12 col-lg-6 d-flex flex-column">
-                    <p class="fs-2 fw-bold">
-                        Secure Your Slot Today!
-                    </p>
-                    <p class="fs-5 my-4">
-                        Don’t miss a trade event where artistry and business meet.
-                        Experience world-class performances and strengthen your music
-                        career across Asia and beyond.
-                        <br>
-                        <br>
-                        Be part of the Market Sensing Program! Slots are open until
-                        <strong>
-                            January 4!
-                        </strong>
-                        <br>
-                        <br>
-                        Maximize your Bangkok Music City 2026 journey and seize every
-                        opportunity while you can. Click the link to join the program now.
-                    </p>
-                    <div class="d-flex align-items-center">
-                        <button type="button" class="button3 rounded-2">Apply Now</button>
-                    </div>
+            <div class="col-12 col-lg-6 d-flex flex-column">
+                <p class="fs-2 lh-sm fw-bold">
+                    What makes the Market Sensing Program different
+                </p>
+                <p class="fs-5 my-4">
+                    More than understanding a market, this program offers a structured learning experience, including:
+                </p>
+                <ul class="fs-5">
+                    <li>All-access passes to BMC conferences and showcases</li>
+                    <li>Office, studio, and creative hub visits arranged by BMC</li>
+                    <li>Observation slots in PH-delegation roundtable sessions</li>
+                    <li>Networking access alongside the main PH delegation</li>
+                    <li>Opportunities to learn about Thailand’s music and creative industries</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row d-flex flex-column-reverse flex-lg-row mt-5">
+            <div class="col-12 col-lg-6 d-flex flex-column">
+                <p class="fs-2 fw-bold">
+                    Secure Your Slot Today!
+                </p>
+                <p class="fs-5 my-4">
+                    Don’t miss a trade event where artistry and business meet.
+                    Experience world-class performances and strengthen your music
+                    career across Asia and beyond.
+                    <br>
+                    <br>
+                    Be part of the Market Sensing Program! Slots are open until
+                    <strong>
+                        January 4!
+                    </strong>
+                    <br>
+                    <br>
+                    Maximize your Bangkok Music City 2026 journey and seize every
+                    opportunity while you can. Click the link to join the program now.
+                </p>
+                <div class="d-flex align-items-center">
+                    <button type="button" class="button3 rounded-2">Apply Now</button>
                 </div>
-                <div class="col-12 col-lg-6 mb-4">
-                    <div class="d-flex justify-content-center align-items-center h-100">
-                        <img
-                            class="img-fluid"
-                            src="{{ asset('img/static/2026_BMC/BMC-img-10.png') }}"
-                            alt="2026_BMC"
-                            loading="lazy">
-                    </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-4">
+                <div class="d-flex justify-content-center align-items-center ticket">
+                    <img
+                        class="img-fluid animate-img-3"
+                        src="{{ asset('img/static/2026_BMC/BMC-img-10.png') }}"
+                        alt="2026_BMC"
+                        loading="lazy">
+                    <img
+                        class="img-fluid animate-img-4"
+                        src="{{ asset('img/static/2026_BMC/BMC-img-10.png') }}"
+                        alt="2026_BMC"
+                        loading="lazy">
+                    <img
+                        class="img-fluid animate-img-5"
+                        src="{{ asset('img/static/2026_BMC/BMC-img-10.png') }}"
+                        alt="2026_BMC"
+                        loading="lazy">
                 </div>
             </div>
         </div>
@@ -559,5 +765,24 @@
     </div>
 </section>
 
+<script>
+    function handleBlurLoad(selector) {
+        document.querySelectorAll(selector).forEach(div => {
+            const img = div.querySelector('img');
+            if (!img) return;
 
+            const loaded = () => div.classList.add('loaded');
+
+            img.complete && img.naturalWidth !== 0 ?
+                loaded() :
+                img.addEventListener('load', loaded, {
+                    once: true
+                });
+        });
+    }
+
+    handleBlurLoad('.blur');
+    handleBlurLoad('.artist-blur');
+    
+</script>
 @endsection

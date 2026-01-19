@@ -104,7 +104,97 @@ class EventsController extends Controller
     }
     public function bmc26()
     {
-        return view('website.info_page.2026_bangkok.index');
+        $featured_singers = [
+            [
+                'name' => 'August Wahh',
+                'description' => 'She is a singer-songwriter who blends experimental R&B and Nu Soul, making captivating beats and a sultry, intimate edge rooted in vulnerability and human expression. Her music feels raw and unfiltered, leaning more on the emotional truth.',
+                'genre' => 'NEO SOUL, HYPER POP, R&B, ELECTRONIC',
+                'image' => 'BMC_artist_1.png',
+                'insta_link' => 'https://www.instagram.com/augustwahh/?hl=en',
+                'listen_link' => 'https://open.spotify.com/artist/4NsvRUCOVV4KrWRfF65Rcj',
+                'style' => 'rgba(185, 130, 188, 0.7)',
+                'loading' => 'august',
+            ],
+            [
+                'name' => 'bird.',
+                'description' => 'A four-piece vibecore band that crafts feel-good, uplifting tunes infused with shoegaze and dreampop textures, balancing elements of band-driven sound, mainstream pop, and indie music. Their music is a safe space made for moments where you can breathe and let loose.',
+                'genre' => 'VIBECORE INFUSED WITH SHOEGAZE & DREAMPOP TEXTURES',
+                'image' => 'BMC_artist_2.png',
+                'insta_link' => 'https://www.instagram.com/bird.mnl/?hl=en',
+                'listen_link' => 'https://open.spotify.com/artist/5ZR9GMo2iB8nxetEtvRdey?si=yTXR0oDxT6a2Gl73n3xbZQ',
+                'style' => 'rgba(227, 247, 151, 0.7)',
+                'loading' => 'bird'
+            ],
+            [
+                'name' => 'Delinquent Society',
+                'description' => 'A hip-hop duo forged through years of shared history and experimentation. Their impact is driven by high-energy live performances and a consistent stream of creative output, earning recognition not only for their musicality but also for a distinctive visual and fashion-forward identity.',
+                'genre' => 'ALTERNATIVE HIP HOP',
+                'image' => 'BMC_artist_3.png',
+                'insta_link' => 'https://www.instagram.com/delinquentsociety_/?hl=en',
+                'listen_link' => 'https://open.spotify.com/artist/4WUC1M0EpVDrx7xKILoLy6',
+                'style' => 'rgba(248, 118, 240, 0.7)',
+                'loading' => 'delinquent'
+            ],
+            [
+                'name' => 'ONE CLICK STRAIGHT',
+                'description' => 'A band that breaks free from restrictive genre norms, blending indie-pop electronic rock into an ever-evolving sound. Their authentic songwriting resists reliance on a single formula, instead embracing experimentation to craft music that is distinctive, dynamic, and stylistically bold.',
+                'genre' => 'INDIE POP ELECTRONIC ROCK',
+                'image' => 'BMC_artist_4.png',
+                'insta_link' => 'https://www.instagram.com/oneclickstraight/',
+                'listen_link' => 'https://open.spotify.com/artist/457BGAQIRpxlvY5gcbDjUQ',
+                'style' => 'rgba(248, 118, 240, 0.7)',
+                'loading' => 'straight'
+            ],
+            [
+                'name' => 'Pedicab',
+                'description' => 'Fusing punk attitude with disco rhythms, this band helped reshape Philippine alternative music. Their sound is widely regarded as a modern classic, driven by a bold mix of spoken-word vocals, pulsating synthesizers, and an uncompromising approach that makes their music raw, danceable, and unmistakably forward-thinking.',
+                'genre' => 'DISCO PUNK, SYNTH PUNK, POST PUNK, NEW WAVE',
+                'image' => 'BMC_artist_5.png',
+                'insta_link' => 'https://www.instagram.com/pedicabmanila/?hl=en',
+                'listen_link' => 'https://open.spotify.com/artist/270BokezkycFfTTlGEKVKZ?si=te6zr85bRf65vX99aebBUQ',
+                'style' => 'rgba(227, 247, 151, 0.7)',
+                'loading' => 'pedicab'
+            ],
+            [
+                'name' => 'PLAYERTWO',
+                'description' => 'This creative force pushes boundaries with every music release, carving out a distinct sound within alternative hip-hop. Anchored by punchy beats, playful lyricism, and genre-bending instincts, they’ve gained widespread visibility and emerged as trendsetters in the industry.',
+                'genre' => 'ENERGETIC AND ROWDY ALTERNATIVE HIP HOP',
+                'image' => 'BMC_artist_6.png',
+                'insta_link' => 'https://www.instagram.com/weareplayertwo_/?hl=en',
+                'listen_link' => 'https://open.spotify.com/artist/4wjgqUtfS9TNfMHhjEqAb7?si=wAe-PmTfQkOKaLUmM1Lg8w',
+                'style' => 'rgba(185, 130, 188, 0.7)',
+                'loading' => 'player'
+            ],
+        ];
+        $content = [
+            [
+                "title" => "B2B Interactions & Networking",
+                "description" => [
+                    "Connect with international counterparts in curated roundtable sessions",
+                    "Speak on panels and join global conversations",
+                    "Engage in business matching and pitching sessions with agencies, buyers, and industry partners"
+                ]
+            ],
+            [
+                "title" => "Creative Hubs & Conferences",
+                "description" => [
+                    "Experience a festival-meets-business environment designed to foster meaningful connections",
+                    "Explore key creative spaces across Bangkok’s creative district",
+                    "Build relationships with studios, companies, and institutions",
+                ]
+            ],
+            [
+                "title" => "Talent & Artistry Showcase",
+                "description" => [
+                    "Perform in and utilize six official Philippine showcase slots",
+                    "Present to over 100 festival programmers, music supervisors, and delegates from across Asia",
+                    "Spark collaborations and connect with industry leaders",
+                ]
+            ],
+        ];
+        $singers = collect($featured_singers)
+            ->map(fn($item) => (object) $item);
+        return view('website.info_page.2026_bangkok.index', ['featured_singers' => $singers, 'content' => $content]);
     }
 
     public function animahenasyon25()
